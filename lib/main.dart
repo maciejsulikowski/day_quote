@@ -1,4 +1,6 @@
+import 'package:day_quote/app/features/quotes/quotes_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,19 +30,27 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purpleAccent,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(10.0),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Text(
                 'DayQuote',
+                style: GoogleFonts.orienta(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 50),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const QuotePage()));
+              },
               child: const CircleAvatar(
                 radius: 100,
                 backgroundColor: Colors.black,
@@ -52,10 +62,17 @@ class MainPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 80),
-            const Text('Kliknij wyżej żeby wylosować cytat!'),
+            Text(
+              'Kliknij wyżej żeby wylosować cytat!',
+              style: GoogleFonts.orienta(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
