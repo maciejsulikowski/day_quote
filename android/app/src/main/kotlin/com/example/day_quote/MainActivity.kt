@@ -1,4 +1,4 @@
-package com.example.day_quote
+package com.maciejsulikowski.day_quote
 
 import io.flutter.embedding.android.FlutterActivity
 

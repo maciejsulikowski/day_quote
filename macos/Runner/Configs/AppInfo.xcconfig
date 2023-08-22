@@ -8,7 +8,7 @@
 PRODUCT_NAME = day_quote
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.dayQuote
+PRODUCT_BUNDLE_IDENTIFIER = com.maciejsulikowski.dayQuote
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.maciejsulikowski. All rights reserved.
