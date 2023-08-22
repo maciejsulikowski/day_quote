@@ -1,8 +1,15 @@
 import 'package:day_quote/app/features/quotes/quotes_page.dart';
+import 'package:day_quote/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //configureDependencies();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -75,4 +82,3 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-
