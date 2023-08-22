@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-class MainPage extends StatelessWidget {
-  const MainPage({
+class HomePage extends StatelessWidget {
+  const HomePage({
     super.key,
   });
 
