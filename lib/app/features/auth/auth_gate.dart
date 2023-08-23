@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui_auth;
 import 'package:flutter/material.dart';
 
+
 class AuthGate extends StatelessWidget {
   const AuthGate({Key? key}) : super(key: key);
 
@@ -22,7 +23,9 @@ class AuthGate extends StatelessWidget {
         }
 
         // Render your application if authenticated
-        return const HomePage();
+        return HomePage(
+          currentUser: snapshot.data!,
+        );
       },
     );
   }
