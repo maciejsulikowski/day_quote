@@ -1,5 +1,6 @@
 import 'package:day_quote/app/features/auth/user_profile.dart';
 import 'package:day_quote/app/features/quotes/quotes_page.dart';
+import 'package:day_quote/app/features/search/search_page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => const UserProfile(),
+                        builder: (_) => const SearchPage(),
                       ),
                     );
                   },
