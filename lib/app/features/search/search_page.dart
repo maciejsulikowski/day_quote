@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({
+  SearchPage({
     super.key,
   });
 
+  final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],

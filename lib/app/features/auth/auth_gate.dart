@@ -12,6 +12,7 @@ class AuthGate extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
+        final user = snapshot.data;
         if (!snapshot.hasData) {
           return firebase_ui_auth.SignInScreen(
             providers: [
@@ -20,7 +21,7 @@ class AuthGate extends StatelessWidget {
           );
         }
         return HomePage(
-          currentUser: snapshot.data!,
+          currentUser: user!,
         );
       },
     );
