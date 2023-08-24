@@ -1,11 +1,9 @@
-
 import 'package:day_quote/app/features/auth/user_profile.dart';
 import 'package:day_quote/app/features/quotes/quotes_page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -21,18 +19,35 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const UserProfile(),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const UserProfile(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.search),
+                  label: const Text('Szukaj'),
                 ),
-              );
-            },
-            icon: const Icon(
-              Icons.person,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const UserProfile(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.person),
+                  label: const Text('Konto'),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
       backgroundColor: Colors.purpleAccent,
