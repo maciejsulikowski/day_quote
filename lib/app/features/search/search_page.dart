@@ -7,14 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({
-    
     super.key,
   });
 
-  
-
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
@@ -22,15 +21,33 @@ class SearchPage extends StatelessWidget {
       backgroundColor: Colors.purpleAccent,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                'DayQuote',
+                'Szukaj',
                 style: GoogleFonts.orienta(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextField(
+                controller: controller,
+                style:
+                    const TextStyle(fontSize: 16), 
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(20), 
+                  border: OutlineInputBorder(
+                    borderRadius:
+                        BorderRadius.circular(10), 
+                  ),
+                  hintText: 'Wpisz coś...', 
+                  filled: true,
+                  fillColor: Colors.white, 
                 ),
               ),
             ),
