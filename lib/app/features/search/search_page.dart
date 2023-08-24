@@ -1,7 +1,3 @@
-import 'package:day_quote/app/features/auth/user_profile.dart';
-import 'package:day_quote/app/features/quotes/quotes_page.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,17 +33,15 @@ class SearchPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: TextField(
                 controller: controller,
-                style:
-                    const TextStyle(fontSize: 16), 
+                style: const TextStyle(fontSize: 16),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(20), 
+                  contentPadding: const EdgeInsets.all(20),
                   border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(10), 
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: 'Wpisz coś...', 
+                  hintText: 'Wpisz coś...',
                   filled: true,
-                  fillColor: Colors.white, 
+                  fillColor: Colors.white,
                 ),
               ),
             ),
