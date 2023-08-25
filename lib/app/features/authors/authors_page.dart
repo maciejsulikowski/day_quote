@@ -21,15 +21,26 @@ class AuthorsPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: Text(
-                'Autor🔍',
-                style: GoogleFonts.roboto(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+              child: Center(
+                child: Text(
+                  'Imie autora 🔍',
+                  style: GoogleFonts.roboto(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 80),
+            const CircleAvatar(
+              radius: 100,
+              child: Text('Zdjecie'),
+            ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.all(25.0),
+              child: Text(
+                  'LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum'),
+            ),
           ],
         ),
       ),
