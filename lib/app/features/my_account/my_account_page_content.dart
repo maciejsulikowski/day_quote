@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyAccontPageContent extends StatefulWidget {
   const MyAccontPageContent({
-    required this.currentUser,
+    required this.user,
     super.key,
   });
 
-  final User currentUser;
+  final User user;
 
   @override
   State<MyAccontPageContent> createState() => _MyAccontPageContentState();

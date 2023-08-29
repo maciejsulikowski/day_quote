@@ -17,7 +17,7 @@ class UserProfile extends StatelessWidget {
         actions: [
           firebase_ui_auth.SignedOutAction(
             (context) {
-              Navigator.of(context).pop();
+              Navigator.of(context).popUntil((route) => route.isFirst);
             },
           ),
         ],

@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
           return MyAccontPageContent(
-            currentUser: widget.user,
+            user: widget.user,
           );
         }
         if (currentIndex == 1) {
@@ -39,31 +39,31 @@ class _HomePageState extends State<HomePage> {
           return const UserProfile();
         }
 
-        return MyAccontPageContent(currentUser: widget.user);
+        return MyAccontPageContent(user: widget.user);
       }),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.yellow[400],
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.purple,
         currentIndex: currentIndex,
         onTap: (newIndex) {
           setState(() {
             currentIndex = newIndex;
           }); //ss
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            activeIcon: const Icon(
+            icon: Icon(
               Icons.person,
             ),
-            icon: const Icon(
-              Icons.person,
-            ),
-            label: 'dss',
+            label: 'Cytaty',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.book),
-            label: 'ds',
+            icon: Icon(Icons.search),
+            label: 'Szukaj',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Konto',
           ),
         ],
       ),
