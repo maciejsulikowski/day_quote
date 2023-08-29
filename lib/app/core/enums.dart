@@ -3,4 +3,5 @@ enum Status {
   loading,
   success,
   error,
+  hasData
 }
