@@ -5,7 +5,7 @@ class AuthState {
   const AuthState({
     required this.user,
     required this.status,
-    required this.errorMessage,
+    this.errorMessage,
     
   });
 
