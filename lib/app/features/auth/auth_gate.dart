@@ -1,3 +1,4 @@
+import 'package:day_quote/app/features/my_account/my_account_page_content.dart';
 import 'package:day_quote/app/features/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui_auth;
@@ -23,7 +24,7 @@ class AuthGate extends StatelessWidget {
           );
         }
         return HomePage(
-          currentUser: snapshot.data!,
+          user: snapshot.data!,
         );
       },
     );
