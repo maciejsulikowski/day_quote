@@ -1,8 +1,5 @@
-part of 'authors_cubit.dart';
-
-@immutable
-class AuthorsState {
-  const AuthorsState({
+class AuthorsModel {
+  AuthorsModel({
     required this.authorId,
     required this.story,
     required this.authorName,

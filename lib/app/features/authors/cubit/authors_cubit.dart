@@ -5,7 +5,14 @@ part 'authors_state.dart';
 
 class AuthorsCubit extends Cubit<AuthorsState> {
   AuthorsCubit()
-      : super(AuthorsState(
-          1,
-        ));
+      : super(
+          const AuthorsState(
+            authorId: 1,
+            story: 'story',
+            authorName: 'authorName',
+            authorPhoto: 'authorPhoto',
+          ),
+        );
+
+        
 }

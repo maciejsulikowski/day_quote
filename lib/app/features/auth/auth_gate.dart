@@ -35,16 +35,13 @@ class AuthGate extends StatelessWidget {
               ),
             );
           }
+          if (state.status == Status.loading) {
+            const Center(child: CircularProgressIndicator());
+          }
         },
         child: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             final user = state.user;
-            if (state.status == Status.loading) {
-              return const CircularProgressIndicator();
-            }
-            if (state.status == Status.error) {
-              return Text(state.errorMessage ?? 'Unknown error');
-            }
 
             if (user == null) {
               return firebase_ui_auth.SignInScreen(

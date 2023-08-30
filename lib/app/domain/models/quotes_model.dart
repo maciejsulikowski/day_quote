@@ -1,8 +1,5 @@
-part of 'quotes_cubit.dart';
-
-@immutable
-class QuotesState {
-  const QuotesState({
+class QuotesModel {
+  QuotesModel({
     required this.id,
     required this.authorId,
     required this.quote,
