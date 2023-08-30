@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyAccontPageContent extends StatefulWidget {
-  const MyAccontPageContent({
+class MyAccountPageContent extends StatefulWidget {
+  const MyAccountPageContent({
     required this.user,
     super.key,
   });
@@ -13,10 +13,10 @@ class MyAccontPageContent extends StatefulWidget {
   final User user;
 
   @override
-  State<MyAccontPageContent> createState() => _MyAccontPageContentState();
+  State<MyAccountPageContent> createState() => _MyAccountPageContentState();
 }
 
-class _MyAccontPageContentState extends State<MyAccontPageContent> {
+class _MyAccountPageContentState extends State<MyAccountPageContent> {
   var currentIndex = 0;
   @override
   Widget build(BuildContext context) {

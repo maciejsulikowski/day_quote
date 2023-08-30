@@ -1,6 +1,4 @@
 import 'package:day_quote/app/features/auth/auth_gate.dart';
-import 'package:day_quote/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
