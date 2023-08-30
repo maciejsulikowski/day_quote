@@ -42,7 +42,6 @@ class AuthGate extends StatelessWidget {
         child: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             final user = state.user;
-
             if (user == null) {
               return firebase_ui_auth.SignInScreen(
                 providers: [
