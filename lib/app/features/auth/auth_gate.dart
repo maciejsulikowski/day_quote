@@ -12,44 +12,69 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit()..start(),
-      child: BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, state) {
-          final user = state.user;
-          if (state.status == Status.loading) {
-            return const CircularProgressIndicator();
-          }
+      child: BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
           if (state.status == Status.error) {
-            return Text(state.errorMessage ?? 'Unknown error');
-          }
-
-          if (user == null) {
-            return firebase_ui_auth.SignInScreen(
-              providers: [
-                firebase_ui_auth.EmailAuthProvider(),
-              ],
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.red,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                content: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.error, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(state.errorMessage ?? 'Unknown error'),
+                    ],
+                  ),
+                ),
+              ),
             );
           }
-          return HomePage(
-            user: user,
-          );
-          // return StreamBuilder<User?>(
-          //   stream: FirebaseAuth.instance.authStateChanges(),
-          //   initialData: FirebaseAuth.instance.currentUser,
-          //   builder: (context, snapshot) {
-          //     // User is not signed in
-          //     if (!snapshot.hasData) {
-          //       return firebase_ui_auth.SignInScreen(
-          //         providers: [
-          //           firebase_ui_auth.EmailAuthProvider(),
-          //         ],
-          //       );
-          //     }
-          //     return HomePage(
-          //       user: snapshot.data!,
-          //     );
-          //   },
-          // );
         },
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            final user = state.user;
+            if (state.status == Status.loading) {
+              return const CircularProgressIndicator();
+            }
+            if (state.status == Status.error) {
+              return Text(state.errorMessage ?? 'Unknown error');
+            }
+
+            if (user == null) {
+              return firebase_ui_auth.SignInScreen(
+                providers: [
+                  firebase_ui_auth.EmailAuthProvider(),
+                ],
+              );
+            }
+            return HomePage(
+              user: user,
+            );
+            // return StreamBuilder<User?>(
+            //   stream: FirebaseAuth.instance.authStateChanges(),
+            //   initialData: FirebaseAuth.instance.currentUser,
+            //   builder: (context, snapshot) {
+            //     // User is not signed in
+            //     if (!snapshot.hasData) {
+            //       return firebase_ui_auth.SignInScreen(
+            //         providers: [
+            //           firebase_ui_auth.EmailAuthProvider(),
+            //         ],
+            //       );
+            //     }
+            //     return HomePage(
+            //       user: snapshot.data!,
+            //     );
+            //   },
+            // );
+          },
+        ),
       ),
     );
   }
