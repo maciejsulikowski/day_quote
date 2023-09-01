@@ -1,4 +1,5 @@
 import 'package:day_quote/app/core/enums.dart';
+import 'package:day_quote/app/data/remote_data_sources/remote_auth_data_source.dart';
 import 'package:day_quote/app/domain/repositories/auth_repository.dart';
 import 'package:day_quote/app/features/auth/cubit/auth_cubit.dart';
 import 'package:day_quote/app/features/home/home_page.dart';
@@ -12,7 +13,8 @@ class AuthGate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepository())..start(),
+      create: (context) =>
+          AuthCubit(AuthRepository(AuthRemoteDataSource()))..start(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -53,23 +55,6 @@ class AuthGate extends StatelessWidget {
           return HomePage(
             user: user,
           );
-          // return StreamBuilder<User?>(
-          //   stream: FirebaseAuth.instance.authStateChanges(),
-          //   initialData: FirebaseAuth.instance.currentUser,
-          //   builder: (context, snapshot) {
-          //     // User is not signed in
-          //     if (!snapshot.hasData) {
-          //       return firebase_ui_auth.SignInScreen(
-          //         providers: [
-          //           firebase_ui_auth.EmailAuthProvider(),
-          //         ],
-          //       );
-          //     }
-          //     return HomePage(
-          //       user: snapshot.data!,
-          //     );
-          //   },
-          // );
         },
       ),
     );
