@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
+import 'package:day_quote/app/domain/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit()
+  AuthCubit(this._authRepository)
       : super(
           const AuthState(
             status: Status.loading,
@@ -16,6 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         );
 
+  final AuthRepository _authRepository;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
@@ -24,8 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
       status: Status.loading,
     ));
 
-    _streamSubscription =
-        FirebaseAuth.instance.authStateChanges().listen((user) {
+    _streamSubscription = _authRepository.getUser().listen((user) {
       emit(
         AuthState(
           user: user,
@@ -33,14 +34,14 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       );
     })
-          ..onError((error) {
-            emit(
-              const AuthState(
-                user: null,
-                status: Status.error,
-              ),
-            );
-          });
+      ..onError((error) {
+        emit(
+          const AuthState(
+            user: null,
+            status: Status.error,
+          ),
+        );
+      });
   }
 
   @override
