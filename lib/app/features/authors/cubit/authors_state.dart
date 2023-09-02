@@ -3,7 +3,7 @@ part of 'authors_cubit.dart';
 @immutable
 class AuthorsState {
   const AuthorsState({
-    required this.authorsModel,
+    this.authorsModel = const [],
     this.status = Status.initial,
     this.errorMessage,
   });
