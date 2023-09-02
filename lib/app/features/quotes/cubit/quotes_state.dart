@@ -3,11 +3,11 @@ part of 'quotes_cubit.dart';
 @immutable
 class QuotesState {
   const QuotesState({
-    required this.id,
-    required this.authorId,
-    required this.quote,
+    this.quotesModel = const [],
+    this.status = Status.initial,
+    this.errorMessage,
   });
-  final int id;
-  final int authorId;
-  final String quote;
+  final List<QuotesModel> quotesModel;
+  final Status status;
+  final String? errorMessage;
 }
