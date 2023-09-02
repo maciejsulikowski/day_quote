@@ -30,7 +30,16 @@ class QuotePage extends StatelessWidget {
             body: ListView(
               children: [
                 for (final quote in state.quotesModel) ...[
-                  Text(quote.quote),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      quote.quote,
+                      style: GoogleFonts.buenard(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
