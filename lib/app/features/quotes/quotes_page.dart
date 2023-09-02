@@ -42,8 +42,13 @@ class QuotePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => const AuthorsPage()));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => AuthorsPage(
+                            quotesModel: quote,
+                          ),
+                        ),
+                      );
                     },
                     child: Text(
                       'Poznaj historię autora 🔍',
