@@ -1,4 +1,3 @@
-import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/data/remote_data_sources/remote_authors_data_source.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
@@ -35,6 +34,9 @@ class AuthorsPage extends StatelessWidget {
               child: ListView(
                 children: [
                   for (final author in state.authorsModel) ...[
+                    const SizedBox(
+                      height: 50,
+                    ),
                     Center(
                       child: CachedNetworkImage(
                         imageUrl: author.authorPhoto,

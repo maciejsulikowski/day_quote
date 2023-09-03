@@ -23,8 +23,9 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
+        title: const Text('DayQuote'),
       ),
-      backgroundColor: Colors.purpleAccent,
+      backgroundColor: Colors.purpleAccent[400],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,7 +44,7 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
             InkWell(
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) =>  const QuotePage()));
+                    .push(MaterialPageRoute(builder: (_) => const QuotePage()));
               },
               child: const CircleAvatar(
                 radius: 100,
