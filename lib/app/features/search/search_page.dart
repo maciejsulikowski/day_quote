@@ -10,6 +10,20 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SearchWidget(controller: controller);
+  }
+}
+
+class SearchWidget extends StatelessWidget {
+  const SearchWidget({
+    super.key,
+    required this.controller,
+  });
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
