@@ -14,7 +14,7 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
       ),
-      backgroundColor: Colors.purpleAccent,
+      backgroundColor: Colors.purpleAccent[400],
       body: Center(
         child: Column(
           children: [
@@ -22,7 +22,7 @@ class SearchPage extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 'Szukaj',
-                style: GoogleFonts.orienta(
+                style: GoogleFonts.buenard(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
@@ -33,7 +33,7 @@ class SearchPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: TextField(
                 controller: controller,
-                style: const TextStyle(fontSize: 16),
+                style: GoogleFonts.buenard(fontSize: 18),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(20),
                   border: OutlineInputBorder(

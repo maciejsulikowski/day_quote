@@ -23,7 +23,6 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],
-        title: const Text('DayQuote'),
       ),
       backgroundColor: Colors.purpleAccent[400],
       body: Center(
@@ -34,7 +33,7 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 'DayQuote',
-                style: GoogleFonts.orienta(
+                style: GoogleFonts.buenard(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
@@ -59,7 +58,7 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
             const SizedBox(height: 80),
             Text(
               'Kliknij wyżej żeby wylosować cytat!',
-              style: GoogleFonts.orienta(
+              style: GoogleFonts.buenard(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),

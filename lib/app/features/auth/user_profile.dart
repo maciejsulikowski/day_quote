@@ -6,6 +6,17 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const UserWidget();
+  }
+}
+
+class UserWidget extends StatelessWidget {
+  const UserWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[200],

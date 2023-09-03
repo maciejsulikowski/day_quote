@@ -23,18 +23,18 @@ class QuotePage extends StatelessWidget {
           if (quotesModel.isEmpty) {
             return Scaffold(
               body: Container(
-                color: Colors.purpleAccent,
-                child: const Center(
+                color: Colors.purpleAccent[400],
+                child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(
+                      const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text(
                         'Ładowanie',
-                        style: TextStyle(
+                        style: GoogleFonts.buenard(
                           color: Colors.white,
                           fontSize: 30,
                         ),
@@ -47,50 +47,67 @@ class QuotePage extends StatelessWidget {
           }
           final result = quotesModel[Random().nextInt(quotesModel.length)];
           return Scaffold(
-            backgroundColor: Colors.purpleAccent,
+            backgroundColor: Colors.purpleAccent[400],
             appBar: AppBar(
-              title: const Text(
+              title: Text(
                 'Powrót',
+                style: GoogleFonts.buenard(
+                  fontSize: 24,
+                ),
               ),
               backgroundColor: Colors.purple[300],
             ),
-            body: ListView(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    result.authorName,
-                    style: GoogleFonts.buenard(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      result.authorName,
+                      style: GoogleFonts.buenard(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    result.quote,
-                    style: GoogleFonts.buenard(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      result.quote,
+                      style: GoogleFonts.buenard(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => AuthorsPage(
-                          quotesModel: result,
+                const SizedBox(height: 20),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => AuthorsPage(
+                              quotesModel: result,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Poznaj historię autora 🔍',
+                        style: GoogleFonts.buenard(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    );
-                  },
-                  child: Text(
-                    'Poznaj historię autora 🔍',
-                    style: GoogleFonts.buenard(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
