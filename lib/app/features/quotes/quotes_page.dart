@@ -19,6 +19,33 @@ class QuotePage extends StatelessWidget {
           QuotesCubit(QuotesRepository(RemoteQuotesDataSource()))..getQuotes(),
       child: BlocBuilder<QuotesCubit, QuotesState>(
         builder: (context, state) {
+          final quotesModel = state.quotesModel;
+          if (quotesModel.isEmpty) {
+            return Scaffold(
+              body: Container(
+                color: Colors.purpleAccent,
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'Ładowanie',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
+          final result = quotesModel[Random().nextInt(quotesModel.length)];
           return Scaffold(
             backgroundColor: Colors.purpleAccent,
             appBar: AppBar(
@@ -29,36 +56,44 @@ class QuotePage extends StatelessWidget {
             ),
             body: ListView(
               children: [
-                for (final quote in state.quotesModel) ...[
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      quote.quote,
-                      style: GoogleFonts.buenard(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    result.authorName,
+                    style: GoogleFonts.buenard(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => AuthorsPage(
-                            quotesModel: quote,
-                          ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    result.quote,
+                    style: GoogleFonts.buenard(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => AuthorsPage(
+                          quotesModel: result,
                         ),
-                      );
-                    },
-                    child: Text(
-                      'Poznaj historię autora 🔍',
-                      style: GoogleFonts.buenard(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
                       ),
+                    );
+                  },
+                  child: Text(
+                    'Poznaj historię autora 🔍',
+                    style: GoogleFonts.buenard(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
+                ),
               ],
             ),
           );

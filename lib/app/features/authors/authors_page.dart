@@ -1,12 +1,12 @@
 import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/data/remote_data_sources/remote_authors_data_source.dart';
-import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/features/authors/cubit/authors_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AuthorsPage extends StatelessWidget {
   const AuthorsPage({
@@ -20,7 +20,7 @@ class AuthorsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           AuthorsCubit(AuthorsRepository(RemoteAuthorsDataSource()))
-            ..getAuthors(),
+            ..getAuthors(quotesModel.authorId),
       child: BlocBuilder<AuthorsCubit, AuthorsState>(
         builder: (context, state) {
           return Scaffold(
@@ -35,26 +35,42 @@ class AuthorsPage extends StatelessWidget {
               child: ListView(
                 children: [
                   for (final author in state.authorsModel) ...[
+                    Center(
+                      child: CachedNetworkImage(
+                        imageUrl: author.authorPhoto,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        imageBuilder: (context, imageProvider) {
+                          return CircleAvatar(
+                            radius: 100,
+                            backgroundImage: imageProvider,
+                          );
+                        },
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(25.0),
                       child: Center(
                         child: Text(
-                          author.source,
+                          'Źródło: ${author.source}',
                           style: GoogleFonts.roboto(
-                            fontSize: 22,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
-                    CircleAvatar(
-                      radius: 100,
-                      backgroundImage: NetworkImage(author.authorPhoto),
                     ),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Text(author.story),
+                      child: Text(
+                        author.story,
+                        style: GoogleFonts.roboto(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ],

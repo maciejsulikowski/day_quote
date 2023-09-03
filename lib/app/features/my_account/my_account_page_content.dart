@@ -43,7 +43,7 @@ class _MyAccountPageContentState extends State<MyAccountPageContent> {
             InkWell(
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) =>  QuotePage()));
+                    .push(MaterialPageRoute(builder: (_) =>  const QuotePage()));
               },
               child: const CircleAvatar(
                 radius: 100,

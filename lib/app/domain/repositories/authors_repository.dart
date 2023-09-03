@@ -6,13 +6,18 @@ class AuthorsRepository {
 
   final RemoteAuthorsDataSource _authorsDataSource;
 
-  Future<List<AuthorsModel>> getAuthors() async {
+  Future<List<AuthorsModel>> getAuthors(int authorID) async {
     final json = await _authorsDataSource.getAuthorsData();
 
     if (json == null) {
       return [];
     }
 
-    return json.map((item) => AuthorsModel.fromJson(item)).toList();
+    final authorsData =
+        json.map((item) => AuthorsModel.fromJson(item)).toList();
+
+    return authorsData
+        .where((element) => element.authorId == authorID)
+        .toList();
   }
 }
