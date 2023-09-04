@@ -10,4 +10,6 @@ class RemoteQuotesDataSource {
     }
     return listDynamic.map((e) => e as Map<String, dynamic>).toList();
   }
+
+  
 }

@@ -20,4 +20,14 @@ class AuthorsRepository {
         .where((element) => element.authorId == authorID)
         .toList();
   }
+
+  Future<List<AuthorsModel>> getAuthorsWithoutID() async {
+    final json = await _authorsDataSource.getAuthorsData();
+
+    if (json == null) {
+      return [];
+    }
+
+    return json.map((item) => AuthorsModel.fromJson(item)).toList();
+  }
 }
