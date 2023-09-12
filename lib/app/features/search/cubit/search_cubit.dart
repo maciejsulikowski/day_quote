@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/domain/models/authors_model.dart';
@@ -9,10 +11,12 @@ import 'package:meta/meta.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit(this._authorsRepository, this._quotesRepository) : super(const SearchState());
+  SearchCubit(this._authorsRepository, this._quotesRepository)
+      : super(const SearchState());
 
   final AuthorsRepository _authorsRepository;
   final QuotesRepository _quotesRepository;
+  
 
   Future<void> getAuthors(int authorID) async {
     emit(const SearchState(status: Status.loading));
@@ -24,25 +28,7 @@ class SearchCubit extends Cubit<SearchState> {
           status: Status.success,
         ),
       );
-    } catch (error) {
-      emit(
-        SearchState(
-          status: Status.error,
-          errorMessage: error.toString(),
-        ),
-      );
-    }
-  }
-  Future<void> getAuthorsWithoutID() async {
-    emit(const SearchState(status: Status.loading));
-    final results = await _authorsRepository.getAuthorsWithoutID();
-    try {
-      emit(
-        SearchState(
-          authorsModel: results,
-          status: Status.success,
-        ),
-      );
+      
     } catch (error) {
       emit(
         SearchState(
@@ -62,6 +48,7 @@ class SearchCubit extends Cubit<SearchState> {
           quotesModel: results,
           status: Status.success,
         ),
+        
       );
     } catch (error) {
       emit(
@@ -69,8 +56,10 @@ class SearchCubit extends Cubit<SearchState> {
           status: Status.error,
           errorMessage: error.toString(),
         ),
+
       );
     }
   }
+
   
 }
