@@ -74,8 +74,8 @@ class _SearchPageState extends State<SearchPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: TextField(
-                        onChanged: (_) =>
-                            context.read<SearchCubit>().updateList(state),
+                        onChanged: (value) =>
+                            context.read<SearchCubit>().updateList(value),
                         controller: context.read<SearchCubit>().controller,
                         style: GoogleFonts.buenard(fontSize: 18),
                         decoration: InputDecoration(
@@ -104,19 +104,14 @@ class _SearchPageState extends State<SearchPage> {
                     const SizedBox(height: 20),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: context
-                            .read<SearchCubit>()
-                            .filteredQuotesModel
-                            .length,
+                        itemCount: state.quotesModel.length,
                         itemBuilder: (context, index) => ListTile(
                           title: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (_) => AuthorsPage(
-                                    quotesModel: context
-                                        .read<SearchCubit>()
-                                        .filteredQuotesModel[index],
+                                    quotesModel: state.quotesModel[index],
                                   ),
                                 ),
                               );
@@ -134,10 +129,7 @@ class _SearchPageState extends State<SearchPage> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      context
-                                          .read<SearchCubit>()
-                                          .filteredQuotesModel[index]
-                                          .authorName,
+                                      state.quotesModel[index].authorName,
                                       style: GoogleFonts.buenard(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,

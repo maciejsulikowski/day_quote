@@ -18,10 +18,12 @@ class SearchCubit extends Cubit<SearchState> {
   final AuthorsRepository _authorsRepository;
   final QuotesRepository _quotesRepository;
   final controller = TextEditingController();
-  List<QuotesModel> filteredQuotesModel = [];
+  List<QuotesModel> allQuotesModel = [];
 
   Future<void> getAuthors(int authorID) async {
-    emit(const SearchState(status: Status.loading));
+    emit(const SearchState(
+      status: Status.loading,
+    ));
     final results = await _authorsRepository.getAuthors(authorID);
     try {
       emit(
@@ -41,9 +43,12 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> getQuotes() async {
-    emit(const SearchState(status: Status.loading));
+    emit(const SearchState(
+      status: Status.loading,
+    ));
     final results = await _quotesRepository.getQuotes();
     try {
+      allQuotesModel = results;
       emit(
         SearchState(
           quotesModel: results,
@@ -60,11 +65,13 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  Future<void> updateList(SearchState state) async {
-    filteredQuotesModel = state.quotesModel
-        .where((quote) => quote.authorName
-            .toLowerCase()
-            .contains(controller.text.toLowerCase()))
+  Future<void> updateList(String value) async {
+    final filteredQuotesModel = allQuotesModel
+        .where((quote) =>
+            quote.authorName.toLowerCase().contains(value.toLowerCase()))
         .toList();
+    emit(SearchState(
+      quotesModel: filteredQuotesModel,
+    ));
   }
 }
