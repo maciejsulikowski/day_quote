@@ -1,7 +1,6 @@
 import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/data/remote_data_sources/remote_authors_data_source.dart';
 import 'package:day_quote/app/data/remote_data_sources/remote_quotes_data_source.dart';
-import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/authors/authors_page.dart';
@@ -20,23 +19,10 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final controller = TextEditingController();
-  List<QuotesModel> filteredQuotesModel = [];
-
-  void updateList(SearchState state, String value) {
-    setState(() {
-      filteredQuotesModel = state.quotesModel
-          .where((quote) =>
-              quote.authorName.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SearchCubit(
-          AuthorsRepository(RemoteAuthorsDataSource()),
+    return BlocProvider.value(
+      value: SearchCubit(AuthorsRepository(RemoteAuthorsDataSource()),
           QuotesRepository(RemoteQuotesDataSource()))
         ..getQuotes(),
       child: BlocListener<SearchCubit, SearchState>(
@@ -88,8 +74,9 @@ class _SearchPageState extends State<SearchPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: TextField(
-                        onChanged: (value) => updateList(state, value),
-                        controller: controller,
+                        onChanged: (_) =>
+                            context.read<SearchCubit>().updateList(state),
+                        controller: context.read<SearchCubit>().controller,
                         style: GoogleFonts.buenard(fontSize: 18),
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(20),
@@ -117,14 +104,19 @@ class _SearchPageState extends State<SearchPage> {
                     const SizedBox(height: 20),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: filteredQuotesModel.length,
+                        itemCount: context
+                            .read<SearchCubit>()
+                            .filteredQuotesModel
+                            .length,
                         itemBuilder: (context, index) => ListTile(
                           title: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (_) => AuthorsPage(
-                                    quotesModel: filteredQuotesModel[index],
+                                    quotesModel: context
+                                        .read<SearchCubit>()
+                                        .filteredQuotesModel[index],
                                   ),
                                 ),
                               );
@@ -142,7 +134,10 @@ class _SearchPageState extends State<SearchPage> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      filteredQuotesModel[index].authorName,
+                                      context
+                                          .read<SearchCubit>()
+                                          .filteredQuotesModel[index]
+                                          .authorName,
                                       style: GoogleFonts.buenard(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,

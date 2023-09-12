@@ -6,6 +6,7 @@ import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'search_state.dart';
@@ -16,7 +17,8 @@ class SearchCubit extends Cubit<SearchState> {
 
   final AuthorsRepository _authorsRepository;
   final QuotesRepository _quotesRepository;
-  
+  final controller = TextEditingController();
+  List<QuotesModel> filteredQuotesModel = [];
 
   Future<void> getAuthors(int authorID) async {
     emit(const SearchState(status: Status.loading));
@@ -28,7 +30,6 @@ class SearchCubit extends Cubit<SearchState> {
           status: Status.success,
         ),
       );
-      
     } catch (error) {
       emit(
         SearchState(
@@ -48,7 +49,6 @@ class SearchCubit extends Cubit<SearchState> {
           quotesModel: results,
           status: Status.success,
         ),
-        
       );
     } catch (error) {
       emit(
@@ -56,10 +56,15 @@ class SearchCubit extends Cubit<SearchState> {
           status: Status.error,
           errorMessage: error.toString(),
         ),
-
       );
     }
   }
 
-  
+  Future<void> updateList(SearchState state) async {
+    filteredQuotesModel = state.quotesModel
+        .where((quote) => quote.authorName
+            .toLowerCase()
+            .contains(controller.text.toLowerCase()))
+        .toList();
+  }
 }
