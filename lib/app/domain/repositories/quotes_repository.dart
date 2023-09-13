@@ -6,7 +6,7 @@ class QuotesRepository {
 
   final RemoteQuotesDioDataSource _remoteQuotesDataSource;
 
-  Future<List<QuotesModel>> getQuotes() async {
+  Future<List<QuotesModel>> getQuotesModel() async {
     final json = await _remoteQuotesDataSource.getQuotesData();
     if (json == null) {
       return [];

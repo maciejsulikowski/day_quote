@@ -16,7 +16,7 @@ class AuthorsCubit extends Cubit<AuthorsState> {
 
   Future<void> getAuthors(int authorID) async {
     emit(const AuthorsState(status: Status.loading));
-    final results = await _authorsRepository.getAuthors(authorID);
+    final results = await _authorsRepository.getAuthorsModel(authorID);
     try {
       emit(
         AuthorsState(

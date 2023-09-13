@@ -6,7 +6,7 @@ class AuthorsRepository {
 
   final RemoteAuthorsDioDataSource _authorsDataSource;
 
-  Future<List<AuthorsModel>> getAuthors(int authorID) async {
+  Future<List<AuthorsModel>> getAuthorsModel(int authorID) async {
     final json = await _authorsDataSource.getAuthorsData();
 
     if (json == null) {

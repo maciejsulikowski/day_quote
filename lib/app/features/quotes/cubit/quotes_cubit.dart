@@ -17,7 +17,7 @@ class QuotesCubit extends Cubit<QuotesState> {
         status: Status.loading,
       ),
     );
-    final quotesModel = await _quotesRepository.getQuotes();
+    final quotesModel = await _quotesRepository.getQuotesModel();
     try {
       emit(QuotesState(
         quotesModel: quotesModel,

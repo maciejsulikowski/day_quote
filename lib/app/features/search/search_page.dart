@@ -22,8 +22,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: SearchCubit(AuthorsRepository(RemoteAuthorsDioDataSource()),
-          QuotesRepository(RemoteQuotesDioDataSource()))
+      value: SearchCubit(QuotesRepository(RemoteQuotesDioDataSource()))
         ..getQuotes(),
       child: BlocListener<SearchCubit, SearchState>(
         listener: (context, state) {
