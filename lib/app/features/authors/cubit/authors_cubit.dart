@@ -1,21 +1,23 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authors_state.dart';
+part 'authors_cubit.freezed.dart';
 
 class AuthorsCubit extends Cubit<AuthorsState> {
   AuthorsCubit(this._authorsRepository)
       : super(
-          const AuthorsState(),
+          AuthorsState(),
         );
 
   final AuthorsRepository _authorsRepository;
 
   Future<void> getAuthors(int authorID) async {
-    emit(const AuthorsState(status: Status.loading));
+    emit(AuthorsState(status: Status.loading));
     final results = await _authorsRepository.getAuthorsModel(authorID);
     try {
       emit(
