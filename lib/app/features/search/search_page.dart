@@ -22,8 +22,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: SearchCubit(AuthorsRepository(RemoteAuthorsDataSource()),
-          QuotesRepository(RemoteQuotesDataSource()))
+      value: SearchCubit(AuthorsRepository(RemoteAuthorsDioDataSource()),
+          QuotesRepository(RemoteQuotesDioDataSource()))
         ..getQuotes(),
       child: BlocListener<SearchCubit, SearchState>(
         listener: (context, state) {
@@ -103,51 +103,72 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     const SizedBox(height: 20),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: state.quotesModel.length,
-                        itemBuilder: (context, index) => ListTile(
-                          title: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => AuthorsPage(
-                                    quotesModel: state.quotesModel[index],
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              color: Colors.amber,
-                              child: Row(
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: Colors.black,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      state.quotesModel[index].authorName,
-                                      style: GoogleFonts.buenard(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                      child: state.quotesModel.isEmpty
+                          ? Center(
+                              child: Text(
+                              'Nie znaleziono autora',
+                              style: GoogleFonts.buenard(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ))
+                          : ListView.builder(
+                              itemCount: state.quotesModel.length,
+                              itemBuilder: (context, index) => ListTile(
+                                title: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => AuthorsPage(
+                                          quotesModel: state.quotesModel[index],
+                                        ),
                                       ),
-                                      textAlign: TextAlign.center,
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Row(
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: CircleAvatar(
+                                            radius: 30,
+                                            backgroundColor: Colors.black,
+                                            child: Icon(
+                                              Icons.question_mark,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            state.quotesModel[index].authorName,
+                                            style: GoogleFonts.buenard(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Icon(Icons.arrow_right),
+                                      ],
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Icon(Icons.arrow_right),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
                     ),
                     const SizedBox(
                       height: 20,

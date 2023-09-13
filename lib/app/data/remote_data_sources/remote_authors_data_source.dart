@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class RemoteAuthorsDataSource {
+class RemoteAuthorsDioDataSource {
   Future<List<Map<String, dynamic>>?> getAuthorsData() async {
     final response = await Dio().get<List<dynamic>>(
         'https://my-json-server.typicode.com/maciejsulikowski/json-demo/stories');

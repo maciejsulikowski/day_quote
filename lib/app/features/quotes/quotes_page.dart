@@ -17,7 +17,7 @@ class QuotePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          QuotesCubit(QuotesRepository(RemoteQuotesDataSource()))..getQuotes(),
+          QuotesCubit(QuotesRepository(RemoteQuotesDioDataSource()))..getQuotes(),
       child: BlocBuilder<QuotesCubit, QuotesState>(
         builder: (context, state) {
           final quotesModel = state.quotesModel;

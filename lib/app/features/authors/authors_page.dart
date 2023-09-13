@@ -19,7 +19,7 @@ class AuthorsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          AuthorsCubit(AuthorsRepository(RemoteAuthorsDataSource()))
+          AuthorsCubit(AuthorsRepository(RemoteAuthorsDioDataSource()))
             ..getAuthors(quotesModel.authorId),
       child: BlocBuilder<AuthorsCubit, AuthorsState>(
         builder: (context, state) {
