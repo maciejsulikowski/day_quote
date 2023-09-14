@@ -4,7 +4,6 @@ import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/authors/authors_page.dart';
 import 'package:day_quote/app/features/quotes/cubit/quotes_cubit.dart';
-import 'package:day_quote/app/features/quotes/cubit/quotes_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

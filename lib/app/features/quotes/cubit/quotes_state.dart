@@ -1,8 +1,6 @@
-import 'package:day_quote/app/core/enums.dart';
-import 'package:day_quote/app/domain/models/quotes_model.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'quotes_state.freezed.dart';
+
+part of 'quotes_cubit.dart';
 
 @freezed
 class QuotesState with _$QuotesState {

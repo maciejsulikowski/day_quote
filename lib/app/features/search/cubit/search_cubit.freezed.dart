@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'quotes_state.dart';
+part of 'search_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,30 +15,34 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$QuotesState {
+mixin _$SearchState {
   List<QuotesModel> get quotesModel => throw _privateConstructorUsedError;
+  List<AuthorsModel> get authorsModel => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $QuotesStateCopyWith<QuotesState> get copyWith =>
+  $SearchStateCopyWith<SearchState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuotesStateCopyWith<$Res> {
-  factory $QuotesStateCopyWith(
-          QuotesState value, $Res Function(QuotesState) then) =
-      _$QuotesStateCopyWithImpl<$Res, QuotesState>;
+abstract class $SearchStateCopyWith<$Res> {
+  factory $SearchStateCopyWith(
+          SearchState value, $Res Function(SearchState) then) =
+      _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
   $Res call(
-      {List<QuotesModel> quotesModel, Status status, String? errorMessage});
+      {List<QuotesModel> quotesModel,
+      List<AuthorsModel> authorsModel,
+      Status status,
+      String? errorMessage});
 }
 
 /// @nodoc
-class _$QuotesStateCopyWithImpl<$Res, $Val extends QuotesState>
-    implements $QuotesStateCopyWith<$Res> {
-  _$QuotesStateCopyWithImpl(this._value, this._then);
+class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
+    implements $SearchStateCopyWith<$Res> {
+  _$SearchStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -49,6 +53,7 @@ class _$QuotesStateCopyWithImpl<$Res, $Val extends QuotesState>
   @override
   $Res call({
     Object? quotesModel = null,
+    Object? authorsModel = null,
     Object? status = null,
     Object? errorMessage = freezed,
   }) {
@@ -57,6 +62,10 @@ class _$QuotesStateCopyWithImpl<$Res, $Val extends QuotesState>
           ? _value.quotesModel
           : quotesModel // ignore: cast_nullable_to_non_nullable
               as List<QuotesModel>,
+      authorsModel: null == authorsModel
+          ? _value.authorsModel
+          : authorsModel // ignore: cast_nullable_to_non_nullable
+              as List<AuthorsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -70,37 +79,45 @@ class _$QuotesStateCopyWithImpl<$Res, $Val extends QuotesState>
 }
 
 /// @nodoc
-abstract class _$$_QuotesStateCopyWith<$Res>
-    implements $QuotesStateCopyWith<$Res> {
-  factory _$$_QuotesStateCopyWith(
-          _$_QuotesState value, $Res Function(_$_QuotesState) then) =
-      __$$_QuotesStateCopyWithImpl<$Res>;
+abstract class _$$_SearchStateCopyWith<$Res>
+    implements $SearchStateCopyWith<$Res> {
+  factory _$$_SearchStateCopyWith(
+          _$_SearchState value, $Res Function(_$_SearchState) then) =
+      __$$_SearchStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<QuotesModel> quotesModel, Status status, String? errorMessage});
+      {List<QuotesModel> quotesModel,
+      List<AuthorsModel> authorsModel,
+      Status status,
+      String? errorMessage});
 }
 
 /// @nodoc
-class __$$_QuotesStateCopyWithImpl<$Res>
-    extends _$QuotesStateCopyWithImpl<$Res, _$_QuotesState>
-    implements _$$_QuotesStateCopyWith<$Res> {
-  __$$_QuotesStateCopyWithImpl(
-      _$_QuotesState _value, $Res Function(_$_QuotesState) _then)
+class __$$_SearchStateCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$_SearchState>
+    implements _$$_SearchStateCopyWith<$Res> {
+  __$$_SearchStateCopyWithImpl(
+      _$_SearchState _value, $Res Function(_$_SearchState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? quotesModel = null,
+    Object? authorsModel = null,
     Object? status = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(_$_QuotesState(
+    return _then(_$_SearchState(
       quotesModel: null == quotesModel
           ? _value._quotesModel
           : quotesModel // ignore: cast_nullable_to_non_nullable
               as List<QuotesModel>,
+      authorsModel: null == authorsModel
+          ? _value._authorsModel
+          : authorsModel // ignore: cast_nullable_to_non_nullable
+              as List<AuthorsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -115,12 +132,14 @@ class __$$_QuotesStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_QuotesState implements _QuotesState {
-  _$_QuotesState(
+class _$_SearchState implements _SearchState {
+  _$_SearchState(
       {final List<QuotesModel> quotesModel = const [],
+      final List<AuthorsModel> authorsModel = const [],
       this.status = Status.initial,
       this.errorMessage})
-      : _quotesModel = quotesModel;
+      : _quotesModel = quotesModel,
+        _authorsModel = authorsModel;
 
   final List<QuotesModel> _quotesModel;
   @override
@@ -131,6 +150,15 @@ class _$_QuotesState implements _QuotesState {
     return EqualUnmodifiableListView(_quotesModel);
   }
 
+  final List<AuthorsModel> _authorsModel;
+  @override
+  @JsonKey()
+  List<AuthorsModel> get authorsModel {
+    if (_authorsModel is EqualUnmodifiableListView) return _authorsModel;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authorsModel);
+  }
+
   @override
   @JsonKey()
   final Status status;
@@ -139,46 +167,55 @@ class _$_QuotesState implements _QuotesState {
 
   @override
   String toString() {
-    return 'QuotesState(quotesModel: $quotesModel, status: $status, errorMessage: $errorMessage)';
+    return 'SearchState(quotesModel: $quotesModel, authorsModel: $authorsModel, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_QuotesState &&
+            other is _$_SearchState &&
             const DeepCollectionEquality()
                 .equals(other._quotesModel, _quotesModel) &&
+            const DeepCollectionEquality()
+                .equals(other._authorsModel, _authorsModel) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_quotesModel), status, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_quotesModel),
+      const DeepCollectionEquality().hash(_authorsModel),
+      status,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QuotesStateCopyWith<_$_QuotesState> get copyWith =>
-      __$$_QuotesStateCopyWithImpl<_$_QuotesState>(this, _$identity);
+  _$$_SearchStateCopyWith<_$_SearchState> get copyWith =>
+      __$$_SearchStateCopyWithImpl<_$_SearchState>(this, _$identity);
 }
 
-abstract class _QuotesState implements QuotesState {
-  factory _QuotesState(
+abstract class _SearchState implements SearchState {
+  factory _SearchState(
       {final List<QuotesModel> quotesModel,
+      final List<AuthorsModel> authorsModel,
       final Status status,
-      final String? errorMessage}) = _$_QuotesState;
+      final String? errorMessage}) = _$_SearchState;
 
   @override
   List<QuotesModel> get quotesModel;
+  @override
+  List<AuthorsModel> get authorsModel;
   @override
   Status get status;
   @override
   String? get errorMessage;
   @override
   @JsonKey(ignore: true)
-  _$$_QuotesStateCopyWith<_$_QuotesState> get copyWith =>
+  _$$_SearchStateCopyWith<_$_SearchState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
+import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
-import 'package:day_quote/app/features/search/cubit/search_state.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'search_state.dart';
+part 'search_cubit.freezed.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this._quotesRepository) : super(SearchState());

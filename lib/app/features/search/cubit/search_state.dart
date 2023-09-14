@@ -1,15 +1,11 @@
-import 'package:day_quote/app/core/enums.dart';
-import 'package:day_quote/app/domain/models/authors_model.dart';
-import 'package:day_quote/app/domain/models/quotes_model.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'search_state.freezed.dart';
+part of 'search_cubit.dart';
 
 @freezed
 class SearchState with _$SearchState {
   factory SearchState({
     @Default([]) List<QuotesModel> quotesModel,
-     @Default([]) List<AuthorsModel> authorsModel,
+    @Default([]) List<AuthorsModel> authorsModel,
     @Default(Status.initial) Status status,
     String? errorMessage,
   }) = _SearchState;
