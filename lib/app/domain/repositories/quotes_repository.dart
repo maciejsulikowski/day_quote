@@ -10,10 +10,5 @@ class QuotesRepository {
 
   Future<List<QuotesModel>> getQuotesModel() async {
     return _remoteQuotesDataSource.getQuotesData();
-    // if (json == null) {
-    //   return [];
-    // }
-
-    // return json.map((item) => QuotesModel.fromJson(item)).toList();
   }
 }
