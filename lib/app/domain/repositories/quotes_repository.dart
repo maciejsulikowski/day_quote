@@ -1,6 +1,8 @@
 import 'package:day_quote/app/data/remote_data_sources/remote_quotes_data_source.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class QuotesRepository {
   QuotesRepository(this._remoteQuotesDataSource);
 

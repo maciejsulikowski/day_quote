@@ -1,10 +1,7 @@
-import 'package:day_quote/app/data/remote_data_sources/remote_authors_data_source.dart';
 import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
-import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/features/authors/cubit/authors_cubit.dart';
 import 'package:day_quote/app/injection_container.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';

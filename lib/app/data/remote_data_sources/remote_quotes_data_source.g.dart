@@ -13,10 +13,7 @@ class _RemoteQuotesRetrofitDataSource
   _RemoteQuotesRetrofitDataSource(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??=
-        'https://my-json-server.typicode.com/maciejsulikowski/json-demo/';
-  }
+  });
 
   final Dio _dio;
 

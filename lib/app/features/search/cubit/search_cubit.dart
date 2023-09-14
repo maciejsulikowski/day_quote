@@ -6,10 +6,12 @@ import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'search_state.dart';
 part 'search_cubit.freezed.dart';
 
+@injectable
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this._quotesRepository) : super(SearchState());
 

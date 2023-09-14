@@ -1,13 +1,14 @@
 import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'remote_authors_data_source.g.dart';
-
-@RestApi(
-    baseUrl: "https://my-json-server.typicode.com/maciejsulikowski/json-demo/")
+@injectable
+@RestApi()
 abstract class RemoteAuthorsRetrofitDataSource {
-  factory RemoteAuthorsRetrofitDataSource(Dio dio, {String baseUrl}) =
+  @factoryMethod
+  factory RemoteAuthorsRetrofitDataSource(Dio dio) =
       _RemoteAuthorsRetrofitDataSource;
 
   @GET("/stories")

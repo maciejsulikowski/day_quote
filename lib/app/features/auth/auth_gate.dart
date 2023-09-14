@@ -1,6 +1,4 @@
 import 'package:day_quote/app/core/enums.dart';
-import 'package:day_quote/app/data/remote_data_sources/remote_auth_data_source.dart';
-import 'package:day_quote/app/domain/repositories/auth_repository.dart';
 import 'package:day_quote/app/features/auth/cubit/auth_cubit.dart';
 import 'package:day_quote/app/features/home/home_page.dart';
 import 'package:day_quote/app/injection_container.dart';
