@@ -1,16 +1,13 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/domain/repositories/auth_repository.dart';
 import 'package:day_quote/app/features/auth/cubit/auth_state.dart';
 
-
-
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepository)
       : super(
-           AuthState(
+          AuthState(
             status: Status.loading,
             user: null,
           ),
@@ -20,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit( AuthState(
+    emit(AuthState(
       user: null,
       status: Status.loading,
     ));
@@ -35,7 +32,7 @@ class AuthCubit extends Cubit<AuthState> {
     })
       ..onError((error) {
         emit(
-           AuthState(
+          AuthState(
             user: null,
             status: Status.error,
           ),

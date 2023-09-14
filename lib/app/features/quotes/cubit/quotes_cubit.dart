@@ -1,19 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:day_quote/app/core/enums.dart';
-import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/quotes/cubit/quotes_state.dart';
-import 'package:meta/meta.dart';
-
 
 class QuotesCubit extends Cubit<QuotesState> {
-  QuotesCubit(this._quotesRepository) : super( QuotesState());
+  QuotesCubit(this._quotesRepository) : super(QuotesState());
 
   final QuotesRepository _quotesRepository;
 
   Future<void> getQuotes() async {
     emit(
-       QuotesState(
+      QuotesState(
         status: Status.loading,
       ),
     );
