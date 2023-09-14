@@ -2,7 +2,9 @@ import 'package:day_quote/app/core/enums.dart';
 import 'package:day_quote/app/data/remote_data_sources/remote_quotes_data_source.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/authors/authors_page.dart';
+import 'package:day_quote/app/features/quotes/cubit/quotes_cubit.dart';
 import 'package:day_quote/app/features/search/cubit/search_cubit.dart';
+import 'package:day_quote/app/injection_container.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,9 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value:
-          SearchCubit(QuotesRepository(RemoteQuotesRetrofitDataSource(Dio())))
-            ..getQuotes(),
+      value: getIt<SearchCubit>()..getQuotes(),
       child: BlocListener<SearchCubit, SearchState>(
         listener: (context, state) {
           if (state.status == Status.error) {

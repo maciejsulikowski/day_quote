@@ -15,19 +15,21 @@ final getIt = GetIt.instance;
 
 void configureDependencies() {
   //bloc
-  getIt.registerFactory(() =>
-      SearchCubit(getIt()));
-  getIt.registerFactory(() =>
-      QuotesCubit(getIt()));
-  getIt.registerFactory(() =>
-      AuthorsCubit(getIt()));
-  getIt
-      .registerFactory(() => AuthCubit(getIt()));
+
+  getIt.registerFactory(() => SearchCubit(getIt()));
+  getIt.registerFactory(() => QuotesCubit(getIt()));
+  getIt.registerFactory(() => AuthorsCubit(getIt()));
+  getIt.registerFactory(() => AuthCubit(getIt()));
 
   //repo
 
   getIt.registerFactory(() => QuotesRepository(getIt()));
-  getIt.registerFactory(() => QuotesRepository(getIt()));
   getIt.registerFactory(() => AuthorsRepository(getIt()));
   getIt.registerFactory(() => AuthRepository(getIt()));
+
+  //datasource
+
+  getIt.registerFactory(() => RemoteQuotesRetrofitDataSource(Dio()));
+  getIt.registerFactory(() => RemoteAuthorsRetrofitDataSource(Dio()));
+  getIt.registerFactory(() => AuthRemoteDataSource());
 }

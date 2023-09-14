@@ -3,6 +3,7 @@ import 'package:day_quote/app/data/remote_data_sources/remote_auth_data_source.d
 import 'package:day_quote/app/domain/repositories/auth_repository.dart';
 import 'package:day_quote/app/features/auth/cubit/auth_cubit.dart';
 import 'package:day_quote/app/features/home/home_page.dart';
+import 'package:day_quote/app/injection_container.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,7 @@ class AuthGate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AuthCubit(AuthRepository(AuthRemoteDataSource()))..start(),
+      create: (context) => getIt<AuthCubit>()..start(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == Status.error) {
