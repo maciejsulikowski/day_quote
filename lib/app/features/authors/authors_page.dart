@@ -3,6 +3,7 @@ import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/features/authors/cubit/authors_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,9 +19,9 @@ class AuthorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AuthorsCubit(AuthorsRepository(RemoteAuthorsDioDataSource()))
-            ..getAuthors(quotesModel.authorId),
+      create: (context) => AuthorsCubit(
+          AuthorsRepository(RemoteAuthorsRetrofitDataSource(Dio())))
+        ..getAuthors(quotesModel.authorId),
       child: BlocBuilder<AuthorsCubit, AuthorsState>(
         builder: (context, state) {
           return AuthorPageContent(authorsModel: state.authorsModel);

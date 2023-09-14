@@ -4,17 +4,10 @@ import 'package:day_quote/app/domain/models/authors_model.dart';
 class AuthorsRepository {
   AuthorsRepository(this._authorsDataSource);
 
-  final RemoteAuthorsDioDataSource _authorsDataSource;
+  final RemoteAuthorsRetrofitDataSource _authorsDataSource;
 
   Future<List<AuthorsModel>> getAuthorsModel(int authorID) async {
-    final json = await _authorsDataSource.getAuthorsData();
-
-    if (json == null) {
-      return [];
-    }
-
-    final authorsData =
-        json.map((item) => AuthorsModel.fromJson(item)).toList();
+    final authorsData = await _authorsDataSource.getAuthorsData();
 
     return authorsData
         .where((element) => element.authorId == authorID)

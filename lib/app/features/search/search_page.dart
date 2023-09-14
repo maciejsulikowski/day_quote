@@ -5,6 +5,7 @@ import 'package:day_quote/app/domain/repositories/authors_repository.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/authors/authors_page.dart';
 import 'package:day_quote/app/features/search/cubit/search_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,8 +23,9 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: SearchCubit(QuotesRepository(RemoteQuotesDioDataSource()))
-        ..getQuotes(),
+      value:
+          SearchCubit(QuotesRepository(RemoteQuotesRetrofitDataSource(Dio())))
+            ..getQuotes(),
       child: BlocListener<SearchCubit, SearchState>(
         listener: (context, state) {
           if (state.status == Status.error) {

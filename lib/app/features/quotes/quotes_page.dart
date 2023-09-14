@@ -4,6 +4,7 @@ import 'package:day_quote/app/domain/models/quotes_model.dart';
 import 'package:day_quote/app/domain/repositories/quotes_repository.dart';
 import 'package:day_quote/app/features/authors/authors_page.dart';
 import 'package:day_quote/app/features/quotes/cubit/quotes_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +18,7 @@ class QuotePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          QuotesCubit(QuotesRepository(RemoteQuotesDioDataSource()))..getQuotes(),
+          QuotesCubit(QuotesRepository(RemoteQuotesRetrofitDataSource(Dio())))..getQuotes(),
       child: BlocBuilder<QuotesCubit, QuotesState>(
         builder: (context, state) {
           final quotesModel = state.quotesModel;

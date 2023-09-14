@@ -4,14 +4,14 @@ import 'package:day_quote/app/domain/models/quotes_model.dart';
 class QuotesRepository {
   QuotesRepository(this._remoteQuotesDataSource);
 
-  final RemoteQuotesDioDataSource _remoteQuotesDataSource;
+  final RemoteQuotesRetrofitDataSource _remoteQuotesDataSource;
 
   Future<List<QuotesModel>> getQuotesModel() async {
-    final json = await _remoteQuotesDataSource.getQuotesData();
-    if (json == null) {
-      return [];
-    }
+    return _remoteQuotesDataSource.getQuotesData();
+    // if (json == null) {
+    //   return [];
+    // }
 
-    return json.map((item) => QuotesModel.fromJson(item)).toList();
+    // return json.map((item) => QuotesModel.fromJson(item)).toList();
   }
 }

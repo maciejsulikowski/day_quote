@@ -1,4 +1,18 @@
+import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
+
+part 'remote_authors_data_source.g.dart';
+
+@RestApi(
+    baseUrl: "https://my-json-server.typicode.com/maciejsulikowski/json-demo/")
+abstract class RemoteAuthorsRetrofitDataSource {
+  factory RemoteAuthorsRetrofitDataSource(Dio dio, {String baseUrl}) =
+      _RemoteAuthorsRetrofitDataSource;
+
+  @GET("/stories")
+  Future<List<AuthorsModel>> getAuthorsData();
+}
 
 class RemoteAuthorsDioDataSource {
   Future<List<Map<String, dynamic>>?> getAuthorsData() async {
