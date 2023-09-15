@@ -23,8 +23,9 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchState(
       status: Status.loading,
     ));
-    final results = await _quotesRepository.getQuotesModel();
+
     try {
+      final results = await _quotesRepository.getQuotesModel();
       allQuotesModel = results;
       emit(
         SearchState(
