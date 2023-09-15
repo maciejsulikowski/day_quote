@@ -18,30 +18,54 @@ void main() {
   });
 
   group('getAuthors', () {
-    setUp(() {
-      when(() => repository.getAuthorsModel(1)).thenAnswer((_) async => [
-            AuthorsModel(1, 'story1', 'authorPhoto1', 'source1'),
-            AuthorsModel(2, 'story2', 'authorPhoto2', 'source3'),
-            AuthorsModel(3, 'story3', 'authorPhoto3', 'source3')
-          ]);
+    group('success', () {
+      setUp(() {
+        when(() => repository.getAuthorsModel(1)).thenAnswer((_) async => [
+              AuthorsModel(1, 'story1', 'authorPhoto1', 'source1'),
+              AuthorsModel(2, 'story2', 'authorPhoto2', 'source3'),
+              AuthorsModel(3, 'story3', 'authorPhoto3', 'source3')
+            ]);
+      });
+      blocTest<AuthorsCubit, AuthorsState>(
+        'emits Status.loading then Status.success with results',
+        build: () => sut,
+        act: (cubit) => cubit.getAuthors(1),
+        expect: () => [
+          AuthorsState(
+            status: Status.loading,
+          ),
+          AuthorsState(
+            authorsModel: [
+              AuthorsModel(1, 'story1', 'authorPhoto1', 'source1'),
+              AuthorsModel(2, 'story2', 'authorPhoto2', 'source3'),
+              AuthorsModel(3, 'story3', 'authorPhoto3', 'source3')
+            ],
+            status: Status.success,
+          ),
+        ],
+      );
     });
-    blocTest<AuthorsCubit, AuthorsState>(
-      'emits Status.loading then Status.success with results',
-      build: () => sut,
-      act: (cubit) => cubit.getAuthors(1),
-      expect: () => [
-        AuthorsState(
-          status: Status.loading,
-        ),
-        AuthorsState(
-          authorsModel: [
-            AuthorsModel(1, 'story1', 'authorPhoto1', 'source1'),
-            AuthorsModel(2, 'story2', 'authorPhoto2', 'source3'),
-            AuthorsModel(3, 'story3', 'authorPhoto3', 'source3')
-          ],
-          status: Status.success,
-        ),
-      ],
-    );
+
+    group('failure', () {
+      setUp(() {
+        when(() => repository.getAuthorsModel(1)).thenThrow(Exception(
+          'test-exception-error',
+        ));
+      });
+      blocTest<AuthorsCubit, AuthorsState>(
+        'emits Status.loading then Status.error with errorMessage',
+        build: () => sut,
+        act: (cubit) => cubit.getAuthors(1),
+        expect: () => [
+          AuthorsState(
+            status: Status.loading,
+          ),
+          AuthorsState(
+            errorMessage: 'Exception: test-exception-error',
+            status: Status.error,
+          ),
+        ],
+      );
+    });
   });
 }
