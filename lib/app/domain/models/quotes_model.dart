@@ -31,8 +31,8 @@ class QuotesModel with _$QuotesModel {
 //   final String authorName;
 
 //   QuotesModel.fromJson(Map<String, dynamic> json)
-//       : id = json['id'],
-//         authorId = json['author_id'],
-//         quote = json['content'],
-//         authorName = json['author_name'];
+      // : id = json['id'],
+      //   authorId = json['author_id'],
+      //   quote = json['content'],
+      //   authorName = json['author_name'];
 // }
