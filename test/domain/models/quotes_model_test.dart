@@ -35,4 +35,11 @@ void main() {
 
     expect(() => QuotesModel.fromJson(json), throwsA(isA<Error>()));
   });
+
+  test('should check inequality of different QuotesModel instances', () {
+    final quotesModel1 = QuotesModel(1, 1, 'Sample_content', 'Sample_author');
+    final quotesModel2 = QuotesModel(1, 1, 'Another_content', 'Another_author');
+
+    expect(quotesModel1, isNot(equals(quotesModel2)));
+  });
 }

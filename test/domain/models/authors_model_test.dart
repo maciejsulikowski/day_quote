@@ -1,4 +1,3 @@
-
 import 'package:day_quote/app/domain/models/authors_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -23,22 +22,27 @@ void main() {
   });
 
   test('should check equality of Authors instances', () {
-    final quotesModel1 = AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
-    final quotesModel2 = AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
+    final quotesModel1 =
+        AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
+    final quotesModel2 =
+        AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
 
     expect(quotesModel1, equals(quotesModel2));
   });
   test('should throw an exception for invalid JSON data', () {
     final json = {
-
       'bio': 'Sample_bio',
     };
 
     expect(() => AuthorsModel.fromJson(json), throwsA(isA<Error>()));
   });
+
+  test('should check inequality of different AuthorsModel instances', () {
+    final authorsModel1 =
+        AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
+    final authorsModel2 =
+        AuthorsModel(2, 'Another bio', 'another.jpg', 'Another source');
+
+    expect(authorsModel1, isNot(equals(authorsModel2)));
+  });
 }
-
-
-
-
-
