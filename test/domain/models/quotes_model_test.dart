@@ -1,4 +1,5 @@
 import 'package:day_quote/app/domain/models/quotes_model.dart';
+import 'package:day_quote/app/features/quotes/cubit/quotes_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -19,5 +20,19 @@ void main() {
       expect(quotesModel.quote, equals('Sample_content'));
       expect(quotesModel.authorName, equals('Sample_author'));
     });
+  });
+  test('should check equality of QuotesModel instances', () {
+    final quotesModel1 = QuotesModel(1, 1, 'Sample_content', 'Sample_author');
+    final quotesModel2 = QuotesModel(1, 1, 'Sample_content', 'Sample_author');
+
+    expect(quotesModel1, equals(quotesModel2));
+  });
+  test('should throw an exception for invalid JSON data', () {
+    final json = {
+      'id': 1,
+      'content': 'Sample_content',
+    };
+
+    expect(() => QuotesModel.fromJson(json), throwsA(isA<Error>()));
   });
 }

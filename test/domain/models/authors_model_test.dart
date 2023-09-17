@@ -21,6 +21,21 @@ void main() {
       expect(authorsModel.source, equals('Sample source'));
     });
   });
+
+  test('should check equality of Authors instances', () {
+    final quotesModel1 = AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
+    final quotesModel2 = AuthorsModel(1, 'Sample bio', 'sample.jpg', 'Sample source');
+
+    expect(quotesModel1, equals(quotesModel2));
+  });
+  test('should throw an exception for invalid JSON data', () {
+    final json = {
+
+      'bio': 'Sample_bio',
+    };
+
+    expect(() => AuthorsModel.fromJson(json), throwsA(isA<Error>()));
+  });
 }
 
 
