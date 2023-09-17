@@ -4,7 +4,7 @@ Day Quote is a simple and fun application that allows you to randomly generate a
 
 ## Test Coverage
 
-<img src="coverage_day_quote.PNG" width="100%" height="100%">
+<img src="coverage_day_quote1.PNG" width="100%" height="100%">
 
 ## Features
 
