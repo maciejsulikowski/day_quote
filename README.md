@@ -10,7 +10,7 @@ Day Quote is a simple and fun application that allows you to randomly generate a
 
 - **Random Quote Generator**: Click a button, and Day Quote will instantly provide you with a new, inspiring quote to kickstart your day.
 
-- **Search Authors**: Search your favourite actors in SearchBar.
+- **Search Authors**: Search your favourite authors in SearchBar.
 
 ## Gif's
 
