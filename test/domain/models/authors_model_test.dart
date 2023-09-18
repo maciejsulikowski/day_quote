@@ -45,4 +45,15 @@ void main() {
 
     expect(authorsModel1, isNot(equals(authorsModel2)));
   });
+
+  test('should allow zero author_id', () {
+    final authorsModel =
+        AuthorsModel(0, 'Sample bio', 'sample.jpg', 'Sample source');
+    expect(authorsModel.authorId, equals(0));
+  });
+
+  test('should allow empty bio', () {
+    final authorsModel = AuthorsModel(0, '', 'sample.jpg', 'Sample source');
+    expect(authorsModel.story, equals(''));
+  });
 }

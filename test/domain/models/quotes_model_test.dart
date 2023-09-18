@@ -42,4 +42,16 @@ void main() {
 
     expect(quotesModel1, isNot(equals(quotesModel2)));
   });
+
+  test('should allow zero id', () {
+    final quotesModel = QuotesModel(0, 1, 'Sample_content', 'Sample_author');
+    expect(quotesModel.id, equals(0));
+  });
+
+  test('should allow empty quote', () {
+    final quotesModel = QuotesModel(1, 1, '', 'Sample_author');
+    expect(quotesModel.quote, equals(''));
+  });
+
+  
 }
