@@ -53,5 +53,16 @@ void main() {
     expect(quotesModel.quote, equals(''));
   });
 
-  
+  test('should allow empty authorName', () {
+    final quotesModel = QuotesModel(1, 1, 'Sample_content', '');
+    expect(quotesModel.authorName, equals(''));
+  });
+
+  test('should allow empty authorId', () {
+    final quotesModel = QuotesModel(1, 0, 'Sample_content', 'Sample_author');
+    expect(quotesModel.authorId, equals(0));
+  });
+
+ 
+
 }

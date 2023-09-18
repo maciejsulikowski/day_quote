@@ -56,4 +56,15 @@ void main() {
     final authorsModel = AuthorsModel(0, '', 'sample.jpg', 'Sample source');
     expect(authorsModel.story, equals(''));
   });
+
+  test('should allow empty source', () {
+    final authorsModel = AuthorsModel(1, 'Sample bio', 'sample.jpg', '');
+    expect(authorsModel.source, equals(''));
+  });
+
+  test('should allow empty jpg', () {
+    final authorsModel = AuthorsModel(1, 'Sample bio', '', 'Sample source');
+    expect(authorsModel.authorPhoto, equals(''));
+  });
+  
 }

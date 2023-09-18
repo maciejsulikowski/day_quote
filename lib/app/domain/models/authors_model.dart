@@ -12,7 +12,9 @@ class AuthorsModel with _$AuthorsModel {
     @JsonKey(name: 'bio') String story,
     @JsonKey(name: 'picture') String authorPhoto,
     String source,
+    
   ) = _AuthorsModel;
+  
 
   factory AuthorsModel.fromJson(Map<String, dynamic> json) =>
       _$AuthorsModelFromJson(json);
