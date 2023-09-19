@@ -55,6 +55,7 @@ class MyAccountPageContent extends StatelessWidget {
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
