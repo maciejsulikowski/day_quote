@@ -1,4 +1,3 @@
-
 part of 'search_cubit.dart';
 
 @freezed
@@ -10,18 +9,3 @@ class SearchState with _$SearchState {
     String? errorMessage,
   }) = _SearchState;
 }
-
-// @immutable
-// class SearchState {
-//   const SearchState({
-//     this.authorsModel = const [],
-//     this.quotesModel = const [],
-//     this.status = Status.initial,
-//     this.errorMessage,
-//   });
-
-//   final List<AuthorsModel> authorsModel;
-//   final List<QuotesModel> quotesModel;
-//   final Status status;
-//   final String? errorMessage;
-// }

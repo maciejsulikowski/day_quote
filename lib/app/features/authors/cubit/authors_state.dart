@@ -8,16 +8,3 @@ class AuthorsState with _$AuthorsState {
     String? errorMessage,
   }) = _AuthorsState;
 }
-
-// @immutable
-// class AuthorsState {
-//   const AuthorsState({
-//     this.authorsModel = const [],
-//     this.status = Status.initial,
-//     this.errorMessage,
-//   });
-
-//   final List<AuthorsModel> authorsModel;
-//   final Status status;
-//   final String? errorMessage;
-// }
