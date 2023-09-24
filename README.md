@@ -23,6 +23,7 @@ Day Quote is a simple and fun application that allows you to randomly generate a
 </div>
 
 ## You can download here:
-//link
+
+https://play.google.com/store/apps/details?id=com.maciejsulikowski.day_quote
 
 Enjoy using Day Quote!
